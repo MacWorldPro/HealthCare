@@ -1,3 +1,2 @@
-Domain=dev-fo41ek88tv2ajne5.us.auth0.com;
-Client_ID=x2PZGFvFLmTgjBV4fKmjmv8qtWvsGswm
-Secret_Key=LggmnLkFbmX7sy5sswGN_4o7BZtrcey_DX7JYikGDqv_7IXxWdp5rkz6HlpCDIHZ;
+export const domain="dev-fo41ek88tv2ajne5.us.auth0.com";
+export const clientId="R2NUD4un176MfxwknFmghPdEo4Flkpo8";
