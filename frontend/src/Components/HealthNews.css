@@ -1,0 +1,32 @@
+/* src/HealthNews.css */
+
+.news-container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+  
+  .news-image img {
+    max-width: 100%;
+    height: auto;
+  }
+  
+  .news-content {
+    max-width: 50%;
+  }
+  
+  .news-content h2 {
+    font-size: 1.5em;
+    margin-bottom: 10px;
+  }
+  
+  .news-content p {
+    font-size: 1em;
+    margin-bottom: 10px;
+  }
+  
+  .news-content a {
+    color: blue;
+    text-decoration: underline;
+  }
+  
