@@ -10,6 +10,9 @@ import ExploreOurTools from './Components/ExploreOurTools';
 import PredictDiabetes from './Components/PredictDiabetes';
 import CalculateBMI from './Components/CalculateBMI';
 import HomePage from './Pages/HomePage';
+import Doctors from './Pages/Doctors';
+import DiabetesChecker from './Pages/DiabetesChecker';
+import BMI from './Pages/BMI';
 
 
 function App() {
@@ -22,14 +25,16 @@ function App() {
       </main>
   <Exercise/>
   <ExploreOurTools/> */}
-  <Router>
   <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/predict-diabetes" element={<PredictDiabetes />} />
             <Route path="/calculate-bmi" element={<CalculateBMI />} />
             <Route path="/exercise-routine" element={<ExploreOurTools />} />
-          </Routes>
-  </Router>
+
+            <Route path='/doctors' element={<Doctors/>}/>
+            <Route path="/diabetesChecker" element={<DiabetesChecker/>}/>
+            <Route path='/bmi' element={<BMI/>}/>
+    </Routes>
     </>
   );
 }
