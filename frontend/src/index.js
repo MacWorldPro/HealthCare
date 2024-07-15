@@ -5,6 +5,7 @@ import App from './App';
 import './styles.css'; // Import your styles
 import {domain} from '../src/utils'
 import { clientId } from '../src/utils';
+import { BrowserRouter } from 'react-router-dom';
 
 const root = createRoot(document.getElementById('root'));
 
@@ -16,6 +17,8 @@ root.render(
       redirect_uri: window.location.origin
     }}
   >
-    <App />
-  </Auth0Provider>,
+    <BrowserRouter>
+      <App />
+    </BrowserRouter>
+  </Auth0Provider>
 );
