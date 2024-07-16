@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
+import { withAuthenticationRequired } from '@auth0/auth0-react';
+import Loading from "../Components/Loading"; // A loading component to show while checking auth status
 
 const Doctors = () => {
-
-  const [result, setResult] = useState([]);
   const [doctors, setDoctors] = useState([]);
 
   const options = {
@@ -18,7 +18,6 @@ const Doctors = () => {
   const fetchDoctors = async (retryCount = 0) => {
     try {
       const response = await axios.request(options);
-      console.log(response.data);
       return response.data;
     } catch (error) {
       if (error.response && error.response.status === 429 && retryCount < 5) {
@@ -33,32 +32,34 @@ const Doctors = () => {
       }
     }
   };
-  
-    useEffect(() => {
-      (async () => {
-        try {
-          const data = await fetchDoctors();
-          setDoctors(data);
-        } catch (error) {
-          console.error("Failed to fetch doctors:", error);
-        }
-      })();
-    }, []);
+
+  useEffect(() => {
+    (async () => {
+      try {
+        const data = await fetchDoctors();
+        setDoctors(data);
+      } catch (error) {
+        console.error("Failed to fetch doctors:", error);
+      }
+    })();
+  }, []);
 
   return (
     <div>
-      {result.map((doctor, index) => (
+      {doctors.map((doctor, index) => (
         <div key={index}>
-          {doctor.map((doc) => {
-            <div className="flex">
+          {doctor.map((doc) => (
+            <div key={doc.username} className="flex">
               <div>{doc.username}</div>
               <div>{doc.reviewtext}</div>
-            </div>;
-          })}
+            </div>
+          ))}
         </div>
       ))}
     </div>
-  )
+  );
 }
 
-export default Doctors
+export default withAuthenticationRequired(Doctors, {
+  onRedirecting: () => <Loading />,
+});

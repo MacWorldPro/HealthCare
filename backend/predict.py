@@ -3,16 +3,33 @@ import numpy as np
 import pandas as pd
 from flask import Flask, request, jsonify
 from flask_cors import CORS
+from config import Config
+from routes.user_routes import user_routes
+from flask_pymongo import PyMongo
 
 app = Flask(__name__)
 CORS(app)
+app.config.from_object(Config)
+
+# Initialize PyMongo
+mongo = PyMongo(app)
+
+# Ensure unique index on email
+try:
+    mongo.db.users.create_index("email", unique=True)
+except Exception as e:
+    print(f"Error creating index: {e}")
+    raise e
+
+# Register blueprints
+app.register_blueprint(user_routes)
 
 # Load the machine learning model and scaler
 try:
-    with open('models/model.pkl', 'rb') as file:
+    with open('ML_models/model.pkl', 'rb') as file:
         loaded_model = pickle.load(file)
 
-    with open('models/preprocessor.pkl', 'rb') as file:
+    with open('ML_models/preprocessor.pkl', 'rb') as file:
         loaded_preprocessor = pickle.load(file)
 except Exception as e:
     print(f"Error loading model or scaler: {e}")
