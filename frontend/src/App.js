@@ -27,13 +27,13 @@ function App() {
   <ExploreOurTools/> */}
   <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/predict-diabetes" element={<PredictDiabetes />} />
-            <Route path="/calculate-bmi" element={<CalculateBMI />} />
+            <Route path="/predict-diabetes" element={<DiabetesChecker/>} />
+            <Route path="/calculate-bmi" element={<BMI/>} />
             <Route path="/exercise-routine" element={<ExploreOurTools />} />
 
             <Route path='/doctors' element={<Doctors/>}/>
-            <Route path="/diabetesChecker" element={<DiabetesChecker/>}/>
-            <Route path='/bmi' element={<BMI/>}/>
+            {/* <Route path="/diabetesChecker" element={<DiabetesChecker/>}/>
+            <Route path='/bmi' element={<BMI/>}/> */}
     </Routes>
     </>
   );

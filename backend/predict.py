@@ -19,10 +19,11 @@ except Exception as e:
     raise e
 
 @app.route('/predict', methods=['POST'])
-def predict_diamond_price():
+def predict_diabetes():
     try:
         data = request.get_json()
 
+        # Extract and convert data
         Gender = data.get('Gender')
         AGE = float(data.get('AGE'))
         Urea = float(data.get('Urea'))
@@ -57,10 +58,10 @@ def predict_diamond_price():
         result = loaded_model.predict(new_data_scaled)
 
         # Convert NumPy array to a native Python data type (float)
-        predicted_price = float(result[0])
+        predicted_value = float(result[0])
 
         # Return the predicted result
-        return jsonify({'predicted_value': predicted_price})
+        return jsonify({'predicted_value': predicted_value})
 
     except KeyError as e:
         return jsonify({"error": f"Missing key: {e}"}), 400

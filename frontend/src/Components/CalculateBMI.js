@@ -1,13 +1,41 @@
-// src/CalculateBMI.js
-import React from 'react';
+import React, { useState } from "react";
+import { useForm } from "react-hook-form";
+import { calcBMI } from "../Services/operations/Tools";
 
-const CalculateBMI = () => {
-  return (
-    <div className="flex flex-col items-center mt-10">
-      <h2 className="text-2xl font-bold mb-6">Calculate BMI</h2>
-      <p>Here you can calculate your Body Mass Index.</p>
-    </div>
-  );
+const BmiForm = () => {
+
+    const { handleSubmit, register } = useForm();
+    const [val, setVal] = useState("");
+
+    const onSubmit = async (data) => {
+        const formData = new FormData();
+
+        formData.append("weight", data.weight);
+        formData.append("height", data.height);
+
+        const result = await calcBMI(formData);
+        setVal(result);
+    }
+
+    return (
+        <div className="border-2 border-black h-[40%] flex flex-col justify-between p-5">
+            <div className="font-extrabold text-3xl">BMI Calculator</div>
+            <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+                <label htmlFor="weight">Weight</label>
+                <input type="text" className='textBox' name="weight" {...register("weight")} />
+
+                <label htmlFor="height">Height</label>
+                <input type="text" className='textBox' name="height" {...register("height")} />
+
+                <button type="submit">Submit</button>
+            </form>
+
+            <div>
+                Calculated BMI<br />
+                {val}
+            </div>
+        </div>
+    );
 };
 
-export default CalculateBMI;
+export default BmiForm;

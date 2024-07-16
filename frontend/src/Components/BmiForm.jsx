@@ -1,40 +1,41 @@
-import React from "react";
+import React, { useState } from "react";
 import { useForm } from "react-hook-form";
-import { useState } from "react";
-import {calcBMI} from "../Services/operations/Tools"
+import { calcBMI } from "../Services/operations/Tools";
 
 const BmiForm = () => {
 
-    const {handleSubmit,register}=useForm()
-    const [val,setVal]=useState("")
+    const { handleSubmit, register } = useForm();
+    const [val, setVal] = useState("");
 
-    const onSubmit=async(data)=>{
-        const formData=new FormData()
+    const onSubmit = async (data) => {
+        const formData = new FormData();
 
-        formData.append("weight",data.weight)
-        formData.append("height",data.height)
+        formData.append("weight", data.weight);
+        formData.append("height", data.height);
 
-        const result=await calcBMI(formData);
-        setVal(result)
+        const result = await calcBMI(formData);
+        setVal(result);
     }
 
-  return (
-      <div className="border-2 border-black h-[40%] flex flex-col justify-between p-5">
-      <div className="font-extrabold text-3xl">BMI Calculator</div>
-      <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
-        <label htmlFor="weight">Weight</label>
-        <input type="text" className='textBox' name="weight" />
+    return (
+        <div className="border-2 border-black h-[40%] flex flex-col justify-between p-5">
+            <div className="font-extrabold text-3xl">BMI Calculator</div>
+            <form className="flex flex-col gap-2" onSubmit={handleSubmit(onSubmit)}>
+                <label htmlFor="weight">Weight</label>
+                <input type="text" className='textBox' name="weight" {...register("weight")} />
 
-        <label htmlFor="height">Height</label>
-        <input type="text" className='textBox' name="height" />
-      </form>
+                <label htmlFor="height">Height</label>
+                <input type="text" className='textBox' name="height" {...register("height")} />
 
-      <div>
-        Calculated BMI<br/>
-        {val}
-      </div>
-      </div>
-  );
+                <button type="submit">Submit</button>
+            </form>
+
+            <div>
+                Calculated BMI<br />
+                {val}
+            </div>
+        </div>
+    );
 };
 
 export default BmiForm;
