@@ -52,6 +52,10 @@ def predict_diabetes():
         LDL = float(data.get('LDL'))
         VLDL = float(data.get('VLDL'))
         BMI = float(data.get('BMI'))
+        email = data.get('email')
+
+        print(f"Received data: {data}")
+        print(f"Email: {email}")
 
         # Create a DataFrame
         input_df = pd.DataFrame({
@@ -76,6 +80,16 @@ def predict_diabetes():
 
         # Convert NumPy array to a native Python data type (float)
         predicted_value = float(result[0])
+
+        print(f"Predicted value: {predicted_value}")
+
+        # Update the user's document with the predicted value
+        update_result = mongo.db.users.update_one(
+            {'email': email},
+            {'$set': {'predicted_value': predicted_value}}
+        )
+
+        print(f"Update result: {update_result.raw_result}")
 
         # Return the predicted result
         return jsonify({'predicted_value': predicted_value})

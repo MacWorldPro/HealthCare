@@ -1,4 +1,3 @@
-# models/user.py
 from werkzeug.security import generate_password_hash, check_password_hash
 from flask_pymongo import PyMongo
 from flask import current_app
@@ -7,12 +6,13 @@ def get_mongo():
     return PyMongo(current_app)
 
 class User:
-    def __init__(self, name, email, password, pic=None, is_admin=False):
+    def __init__(self, name, email, password, pic=None, is_admin=False, predicted_value=None):
         self.name = name
         self.email = email
         self.password = generate_password_hash(password)
         self.pic = pic or "https://icon-library.com/images/anonymous-avatar-icon/anonymous-avatar-icon-25.jpg"
         self.is_admin = is_admin
+        self.predicted_value = predicted_value
 
     def save_to_db(self):
         mongo = get_mongo()
@@ -21,7 +21,8 @@ class User:
             'email': self.email,
             'password': self.password,
             'pic': self.pic,
-            'isAdmin': self.is_admin
+            'isAdmin': self.is_admin,
+            'predicted_value': self.predicted_value
         }
         mongo.db.users.insert_one(user_data)
 

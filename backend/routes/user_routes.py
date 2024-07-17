@@ -1,4 +1,3 @@
-# routes/user_routes.py
 from flask import Blueprint, request, jsonify
 from models.user import User
 
@@ -27,3 +26,17 @@ def create_user():
         if "duplicate key error" in str(e):
             return jsonify({'error': 'Email already exists'}), 400
         return jsonify({'error': str(e)}), 500
+
+@user_routes.route('/api/user/<email>', methods=['GET'])
+def get_user_by_email(email):
+    user = User.find_by_email(email)
+    if not user:
+        return jsonify({'error': 'User not found'}), 404
+
+    return jsonify({
+        'name': user.get('name'),
+        'email': user.get('email'),
+        'pic': user.get('pic'),
+        'isAdmin': user.get('isAdmin'),
+        'predicted_value': user.get('predicted_value')
+    }), 200

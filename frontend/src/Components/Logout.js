@@ -7,6 +7,7 @@ const LogoutButton = () => {
   const name = user.nickname;
 const email = user.email;
 const pic = user.picture;
+console.log("user email",email);
 
 const saveHandler = async () => {
     try {

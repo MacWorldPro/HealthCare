@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react'
 import axios from "axios"
 import { diet_key } from '../utils';
 
-const Diet = ({dtype=2}) => {
+const Diet = ({predictedValue}) => {
 
     const [res, setRes] = useState(null);
 
-    let problem=dtype===2?("diabetic"):(dtype===1?("pre-diabetic"):("healthy"))
+    let problem=predictedValue===2?("diabetic"):(predictedValue===1?("pre-diabetic"):("healthy"))
 
     const options = {
         method: 'GET',

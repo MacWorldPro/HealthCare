@@ -5,12 +5,14 @@ import ExploreOurTools from '../Components/ExploreOurTools';
 import Exercise from '../Components/Exercise';
 import Footer from '../Components/Footer';
 import ChatBotComponent from '../Components/ChatBot';
+import Profile from '../Components/Profile';
 
 const HomePage = () => {
   return (
     <>
       <Navbar />
       <main className="flex flex-col items-center p-4 space-y-8">
+        <Profile/>
         <HealthNews />
         <Exercise />
         <ExploreOurTools />

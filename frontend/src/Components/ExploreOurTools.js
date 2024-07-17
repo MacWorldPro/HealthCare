@@ -13,6 +13,12 @@ const tools = [
     description: 'Calculate your Body Mass Index.',
     image: 'https://via.placeholder.com/150',
     path: '/calculate-bmi'
+  },
+  {
+    name: 'Personalised Recommendation',
+    description: 'Based on our prediction Personalised Recommendation',
+    image: 'https://via.placeholder.com/150',
+    path: 'personalized'
   }
 ];
 
