@@ -1,7 +1,18 @@
-import React from 'react';
+import React, { useState } from 'react';
 import ChatBot from 'react-simple-chatbot';
-import { Link } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { ThemeProvider } from 'styled-components';
+
+const RedirectButton = ({ to, label }) => {
+  const navigate = useNavigate();
+  const handleClick = () => navigate(to);
+
+  return (
+    <button onClick={handleClick}>
+      {label}
+    </button>
+  );
+};
 
 const ChatBotComponent = () => {
   const steps = [
@@ -23,31 +34,22 @@ const ChatBotComponent = () => {
     },
     {
       id: 'predict_diabetes',
-      message: 'You can predict diabetes using our tool here:',
       component: (
-        <Link to="/predict-diabetes" target="_blank" rel="noopener noreferrer">
-          Predict Diabetes
-        </Link>
+        <RedirectButton to="/predict-diabetes" label="Predict Diabetes" />
       ),
       trigger: 'options',
     },
     {
       id: 'predict_bmi',
-      message: 'You can predict your BMI using our tool here:',
       component: (
-        <Link to="/predict-bmi" target="_blank" rel="noopener noreferrer">
-          Predict BMI
-        </Link>
+        <RedirectButton to="/calculate-bmi" label="Predict BMI" />
       ),
       trigger: 'options',
     },
     {
       id: 'news',
-      message: 'Check out the latest news about diabetes here:',
       component: (
-        <Link to="/health-news" target="_blank" rel="noopener noreferrer">
-          Latest Diabetes News
-        </Link>
+        <RedirectButton to="/health-news" label="Latest Diabetes News" />
       ),
       trigger: 'options',
     },
@@ -81,21 +83,15 @@ const ChatBotComponent = () => {
     },
     {
       id: 'exercise',
-      message: 'Find exercise tips for managing diabetes here:',
       component: (
-        <Link to="/exercise-tips" target="_blank" rel="noopener noreferrer">
-          Exercise Tips
-        </Link>
+        <RedirectButton to="/exercise-routine" label="Exercise Tips" />
       ),
       trigger: 'options',
     },
     {
       id: 'doctor',
-      message: 'Here are some recommended doctors for diabetes care:',
       component: (
-        <Link to="/suggest-doctor" target="_blank" rel="noopener noreferrer">
-          Suggest a Doctor
-        </Link>
+        <RedirectButton to="/doctors" label="Suggest a Doctor" />
       ),
       trigger: 'options',
     },
