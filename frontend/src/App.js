@@ -13,6 +13,7 @@ import HomePage from './Pages/HomePage';
 import Doctors from './Pages/Doctors';
 import DiabetesChecker from './Pages/DiabetesChecker';
 import BMI from './Pages/BMI';
+import Personalized from './Pages/Personalized';
 
 
 function App() {
@@ -32,6 +33,7 @@ function App() {
             <Route path="/exercise-routine" element={<ExploreOurTools />} />
 
             <Route path='/doctors' element={<Doctors/>}/>
+            <Route path='/personalized' element={<Personalized/>}/>
             {/* <Route path="/diabetesChecker" element={<DiabetesChecker/>}/>
             <Route path='/bmi' element={<BMI/>}/> */}
     </Routes>
