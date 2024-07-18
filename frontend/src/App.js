@@ -16,9 +16,10 @@ import BMI from './Pages/BMI';
 import Personalized from './Pages/Personalized';
 
 
+
 function App() {
   return (
-    <>
+    <div className='bg-[#fffff8]'>
     {/* <Navbar/>
     <Profile/>
     <main>
@@ -26,6 +27,8 @@ function App() {
       </main>
   <Exercise/>
   <ExploreOurTools/> */}
+  
+  <Navbar />
   <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/predict-diabetes" element={<DiabetesChecker/>} />
@@ -37,7 +40,7 @@ function App() {
             {/* <Route path="/diabetesChecker" element={<DiabetesChecker/>}/>
             <Route path='/bmi' element={<BMI/>}/> */}
     </Routes>
-    </>
+    </div>
   );
 }
 

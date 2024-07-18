@@ -1,5 +1,10 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { CardActionArea } from '@mui/material';
 
 const HealthNews = () => {
   const [news, setNews] = useState([]);
@@ -33,24 +38,32 @@ const HealthNews = () => {
   }, [news.length]);
 
   if (news.length === 0) {
-    return <div>Loading...</div>;
+    return <div>...</div>;
   }
 
   const currentNews = news[currentIndex];
 
   return (
-    <div className="flex flex-col items-center p-6 bg-white shadow-md rounded-lg">
-      <div className="w-full flex flex-col md:flex-row items-center mb-4">
-        <div className="w-full md:w-1/2 mb-4 md:mb-0">
-          <img className="w-full rounded-lg" src={currentNews.urlToImage} alt="News" />
-        </div>
-        <div className="w-full md:w-1/2 md:pl-6">
-          <h2 className="text-2xl font-bold mb-2">{currentNews.title}</h2>
-          <p className="mb-4">{currentNews.description}</p>
+    <Card  className='mt-16 py-6 px-40' sx={{bgcolor:"#B8E1EE", width: 11/12 }}>
+      <CardActionArea className='hover:bg-none'>
+        <div className='font-bold text-2xl text-center mb-3'>News</div>
+        <CardMedia
+          component="img"
+          image={currentNews.urlToImage}
+          alt={currentNews.title}
+          className='rounded-md'
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+          {currentNews.title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {currentNews.description}
+          </Typography>
           <a href={currentNews.url} target="_blank" rel="noopener noreferrer" className="text-blue-500">Read more</a>
-        </div>
-      </div>
-    </div>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 };
 

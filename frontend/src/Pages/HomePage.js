@@ -10,10 +10,9 @@ import Profile from '../Components/Profile';
 const HomePage = () => {
   return (
     <>
-      <Navbar />
       <main className="flex flex-col items-center p-4 space-y-8">
         <Profile/>
-        <HealthNews />
+        <HealthNews/>
         <Exercise />
         <ExploreOurTools />
         <ChatBotComponent />
