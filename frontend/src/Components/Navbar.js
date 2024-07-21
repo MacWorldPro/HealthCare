@@ -84,7 +84,7 @@ const Navbar = () => {
   };
 
   return (
-    <AppBar className="mt- rounded-full" color="transparent">
+    <AppBar className="mt-2 rounded-full" color="transparent">
       <Toolbar variant="regular" className="flex justify-between backdrop-blur-[1px] rounded-full">
         <Link className="flex gap-5" to="/">
         <AddBusinessRoundedIcon className="scale-150" />

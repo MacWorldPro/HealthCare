@@ -110,7 +110,7 @@ const ChatBotComponent = () => {
 
   return (
     <ThemeProvider theme={theme}>
-      <ChatBot steps={steps} floating={true} />
+      <ChatBot steps={steps} floating={true}/>
     </ThemeProvider>
   );
 };

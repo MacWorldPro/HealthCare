@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import diabetes from "../Assets/diabetes.jpg"
 import images from "../Assets/images.jpg"
 import user from "../Assets/download.jpg"
+import {motion} from "framer-motion"
 
 const tools = [
   {
@@ -27,11 +28,11 @@ const tools = [
 
 const ExploreOurTools = () => {
   return (
-    <div className="flex flex-col w-11/12 items-center mt-10 p-6 bg-secondary shadow-md rounded-lg">
+    <div className="flex flex-col w-11/12 items-center mt-10 p-6 bg-none rounded-lg">
       <h2 className="text-2xl font-bold mb-6">Explore Our Tools</h2>
       <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
         {tools.map((tool) => (
-          <Link to={tool.path} key={tool.name} className={`flex flex-col items-center bg-gray-100 p-6 rounded-lg shadow-md ${tool.name==="Predict Your Diabetes"?("hover:bg-[#97f6bb]"):(`${tool.name==="Calculate BMI"?("hover:bg-[#97f6bb]"):("hover:bg-[#c9bbf7] col-span-2")}`)} transition duration-200`}>
+          <Link to={tool.path} key={tool.name} className={`hover:scale-110 hover:duration-500 flex flex-col items-center bg-quaternary bg-opacity-70 p-6 rounded-lg shadow-md ${tool.name==="Predict Your Diabetes"?("hover:bg-[#97f6bb]"):(`${tool.name==="Calculate BMI"?("hover:bg-[#97f6bb]"):("hover:bg-[#c9bbf7] col-span-2")}`)} transition duration-200`}>
             <img src={tool.image} alt={tool.name} className="mb-4 h-48 w-48 object-cover rounded-full" />
             <h3 className="text-xl font-semibold mb-2">{tool.name}</h3>
             <p className="text-center">{tool.description}</p>
